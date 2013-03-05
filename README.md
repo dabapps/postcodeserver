@@ -33,7 +33,7 @@ Loaded with data from [here](http://www.doogal.co.uk/UKPostcodes.php). The origi
 rebuilding the trie
 -------------------
 
-The repository includes the postcode database encoded using [https://github.com/kmike/marisa-trie] (the resulting file is approx. 19 MB). To rebuild this, you'll need a CSV file with at least three columns: postcode, latitude, longitude. The file linked above (under Data Source) matches this format:
+The repository includes the postcode database encoded using [marisa-trie](https://github.com/kmike/marisa-trie) (the resulting file is approx. 19 MB). To rebuild this, you'll need a CSV file with at least three columns: postcode, latitude, longitude. The file linked above (under Data Source) matches this format:
 
     $ head -5 postcodes.csv 
     Postcode,Latitude,Longitude,Easting,Northing,GridRef,County,District,Ward,DistrictCode,WardCode,Country,CountyCode
