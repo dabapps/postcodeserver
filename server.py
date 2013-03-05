@@ -1,10 +1,10 @@
-from flask import Flask, Response, request, abort
+from flask import Flask, request, jsonify
 import marisa_trie
 import geohash
-import json
 
 
 app = Flask(__name__)
+
 
 db = marisa_trie.BytesTrie()
 db.load('data/postcodes.marisa')
@@ -12,14 +12,15 @@ db.load('data/postcodes.marisa')
 
 @app.route('/')
 def lookup():
+    if 'postcode' not in request.args:
+        return jsonify(detail="Please supply a 'postcode' parameter", about="http://github.com/j4mie/postcodeserver"), 400
     try:
         postcode = request.args['postcode'].replace(' ', '').upper()
         hash = db[postcode][0]
         lat, lng = geohash.decode(hash)
-        data = json.dumps({'postcode': postcode, 'geohash': hash, 'lat': lat, 'lng': lng})
-        return Response(data, mimetype='application/json')
+        return jsonify(postcode=postcode, geohash=hash, lat=lat, lng=lng)
     except:
-        abort(404)
+        return jsonify(detail="Failed to lookup postcode"), 400
 
 
 if __name__ == "__main__":
