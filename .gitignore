@@ -2,7 +2,6 @@
 *.swp
 .DS_Store
 /env
-build
 dist
 MANIFEST
 docs/build/
