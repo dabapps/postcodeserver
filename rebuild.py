@@ -1,3 +1,4 @@
+import csv
 import sys
 import geohash
 import marisa_trie
@@ -9,12 +10,11 @@ def rebuild(filename):
 
     buffer = {}
 
-    for line in open(filename):
+    for row in csv.DictReader(open(filename)):
         try:
-            parts = line.strip().split(',')
-            postcode = parts[0].replace('"', '').replace(' ', '').upper()
-            lat = float(parts[1])
-            lon = float(parts[2])
+            postcode = row['Postcode'].replace('"', '').replace(' ', '').upper()
+            lat = float(row['Latitude'])
+            lon = float(row['Longitude'])
             hash = geohash.encode(lat, lon)
             buffer[unicode(postcode)] = hash
         except:
