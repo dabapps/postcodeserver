@@ -3,3 +3,4 @@ gevent==1.1.2
 gunicorn==19.6.0
 marisa-trie==0.7.2
 python-geohash==0.8.5
+six==1.10.0

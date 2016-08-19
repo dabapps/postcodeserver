@@ -2,11 +2,12 @@ import csv
 import sys
 import geohash
 import marisa_trie
+import six
 
 
 def rebuild(filename):
 
-    print "Rebuilding trie based on CSV file: %s" % filename
+    print("Rebuilding trie based on CSV file: %s" % filename)
 
     buffer = {}
 
@@ -16,13 +17,13 @@ def rebuild(filename):
             lat = float(row['Latitude'])
             lon = float(row['Longitude'])
             hash = geohash.encode(lat, lon)
-            buffer[unicode(postcode)] = hash
+            buffer[six.text_type(postcode)] = hash.encode('utf-8')
         except:
-            print 'skipping %s' % line
+            print('skipping %s' % row)
 
-    trie = marisa_trie.BytesTrie(buffer.iteritems())
+    trie = marisa_trie.BytesTrie(buffer.items())
     trie.save('data/postcodes.marisa')
-    print "Done"
+    print("Done")
 
 
 if __name__ == "__main__":
