@@ -16,7 +16,7 @@ def lookup():
         return jsonify(detail="Please supply a 'postcode' parameter", about="http://github.com/j4mie/postcodeserver"), 400
     try:
         postcode = request.args['postcode'].replace(' ', '').upper()
-        hash = db[postcode][0]
+        hash = db[postcode][0].decode()
         lat, lng = geohash.decode(hash)
         return jsonify(postcode=postcode, geohash=hash, lat=lat, lng=lng)
     except:
