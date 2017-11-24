@@ -1,6 +1,6 @@
-Flask==0.11.1
-gevent==1.1.2
-gunicorn==19.6.0
-marisa-trie==0.7.2
+Flask==0.12.2
+gevent==1.2.2
+gunicorn==19.7.1
+marisa-trie==0.7.4
 python-geohash==0.8.5
-six==1.10.0
+six==1.11.0
