@@ -12,7 +12,7 @@ running locally
 
     git clone git@github.com:j4mie/postcodeserver.git
     cd postcodeserver
-    virtualenv env
+    python3 -m venv env
     env/bin/pip install -r requirements.txt
     env/bin/python server.py
 
