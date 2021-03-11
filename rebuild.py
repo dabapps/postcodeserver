@@ -2,7 +2,6 @@ import csv
 import sys
 import geohash
 import marisa_trie
-import six
 
 
 def rebuild(filename):
@@ -17,7 +16,7 @@ def rebuild(filename):
             lat = float(row['Latitude'])
             lon = float(row['Longitude'])
             hash = geohash.encode(lat, lon)
-            buffer[six.text_type(postcode)] = hash.encode('utf-8')
+            buffer[str(postcode)] = hash.encode('utf-8')
         except:
             print('skipping %s' % row)
 
